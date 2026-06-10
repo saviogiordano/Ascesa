@@ -1,0 +1,40 @@
+# ── Xcode generated (rigenerare con: cd app && xcodegen generate) ──────────────
+app/Ascesa.xcodeproj/
+
+# ── Xcode user data ────────────────────────────────────────────────────────────
+*.xcuserstate
+xcuserdata/
+**/*.xcuserdata/
+*.moved-aside
+
+# ── Build artifacts ────────────────────────────────────────────────────────────
+DerivedData/
+build/
+*.o
+*.d
+*.hmap
+
+# ── Swift Package Manager ──────────────────────────────────────────────────────
+.build/
+.swiftpm/
+# La cache SPM usata da CI è in ~/.spm-packages, non nel repo
+
+# ── macOS ──────────────────────────────────────────────────────────────────────
+.DS_Store
+**/.DS_Store
+.AppleDouble
+.LSOverride
+
+# ── Xcode coverage + test results ──────────────────────────────────────────────
+*.xcresult
+*.xctestresult
+
+# ── Archivi e distribuzione ────────────────────────────────────────────────────
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# ── Editor ─────────────────────────────────────────────────────────────────────
+.idea/
+*.swp
+*~

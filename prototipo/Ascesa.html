@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ascesa — Indoor Trainer</title>
+<link rel="stylesheet" href="styles/tokens.css">
+<style>
+  html, body { height: 100%; }
+  body { background: oklch(0.93 0.004 95); color: oklch(0.30 0.01 255); }
+  .gallery { padding: 44px 48px 120px; }
+  .ghead { max-width: 1100px; margin: 0 auto 8px; }
+  .ghead h1 { font-size: 34px; font-weight: 800; letter-spacing: -0.8px; margin: 0; color: oklch(0.22 0.01 255); }
+  .ghead p { font-size: 15px; color: oklch(0.48 0.01 255); margin: 8px 0 0; max-width: 640px; line-height: 1.5; }
+  .meta { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+  .chip { display: inline-flex; align-items: center; gap: 7px; background: #fff; border: 1px solid oklch(0.88 0.004 95); border-radius: 999px; padding: 7px 13px; font-size: 12.5px; font-weight: 600; color: oklch(0.40 0.01 255); }
+  .swatch { width: 11px; height: 11px; border-radius: 3px; }
+  section.gs { max-width: 1280px; margin: 56px auto 0; }
+  .gs h2 { font-size: 21px; font-weight: 760; letter-spacing: -0.3px; margin: 0 0 4px; color: oklch(0.24 0.01 255); }
+  .gs .sub { font-size: 14px; color: oklch(0.50 0.01 255); margin: 0 0 26px; max-width: 680px; line-height: 1.5; }
+  .row { display: flex; gap: 40px; flex-wrap: wrap; align-items: flex-start; }
+  .frame { display: flex; flex-direction: column; gap: 12px; }
+  .flabel { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: oklch(0.34 0.01 255); }
+  .flabel .n { width: 22px; height: 22px; border-radius: 7px; background: oklch(0.22 0.01 255); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; }
+  .flabel .hint { font-weight: 500; color: oklch(0.55 0.01 255); }
+  .phone-shell, .watch-wrap { }
+  @keyframes scrIn   { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+  @keyframes scrBack { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script src="src/engine.js"></script>
+<script src="src/data.js"></script>
+
+<script type="text/babel" src="src/icons.jsx"></script>
+<script type="text/babel" src="src/ui.jsx"></script>
+<script type="text/babel" src="src/Dashboard.jsx"></script>
+<script type="text/babel" src="src/screens1.jsx"></script>
+<script type="text/babel" src="src/screens2.jsx"></script>
+<script type="text/babel" src="src/screens3.jsx"></script>
+<script type="text/babel" src="src/AppShell.jsx"></script>
+<script type="text/babel" src="src/Watch.jsx"></script>
+
+<script type="text/babel" data-presets="react">
+  RideEngine.start(); // bring the ride to life so the dashboards animate
+
+  const Phone = ({ children }) => (
+    <div className="phone-shell" style={{ width: 402, height: 874, borderRadius: 52, position: 'relative', overflow: 'hidden', background: '#000', boxShadow: '0 30px 55px rgba(20,22,30,0.28), 0 0 0 1px rgba(255,255,255,0.06), inset 0 0 0 6px #0a0a0c' }}>
+      {children}
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 50, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 32px', zIndex: 40, pointerEvents: 'none' }}>
+        <span className="tnum" style={{ color: '#fff', fontWeight: 650, fontSize: 16 }}>9:41</span>
+        <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+          <svg width="18" height="11" viewBox="0 0 18 11"><rect x="0" y="7" width="3" height="4" rx="0.6" fill="#fff"/><rect x="4.5" y="5" width="3" height="6" rx="0.6" fill="#fff"/><rect x="9" y="2.5" width="3" height="8.5" rx="0.6" fill="#fff"/><rect x="13.5" y="0" width="3" height="11" rx="0.6" fill="#fff"/></svg>
+          <svg width="24" height="12" viewBox="0 0 24 12"><rect x="0.5" y="0.5" width="20" height="11" rx="3" stroke="#fff" strokeOpacity="0.4" fill="none"/><rect x="2" y="2" width="16" height="8" rx="1.6" fill="#fff"/><rect x="22" y="4" width="1.6" height="4" rx="0.8" fill="#fff" fillOpacity="0.5"/></svg>
+        </div>
+      </div>
+      <div style={{ position: 'absolute', top: 11, left: '50%', transform: 'translateX(-50%)', width: 126, height: 37, borderRadius: 20, background: '#000', zIndex: 45 }} />
+      <div style={{ position: 'absolute', bottom: 8, left: '50%', transform: 'translateX(-50%)', width: 139, height: 5, borderRadius: 3, background: 'rgba(255,255,255,0.55)', zIndex: 45, pointerEvents: 'none' }} />
+    </div>
+  );
+
+  const Frame = ({ n, title, hint, children }) => (
+    <div className="frame">
+      <div className="flabel">{n && <span className="n">{n}</span>}<span>{title}</span>{hint && <span className="hint">· {hint}</span>}</div>
+      {children}
+    </div>
+  );
+
+  function App() {
+    return (
+      <div className="gallery">
+        <div className="ghead">
+          <h1>Ascesa — Indoor Trainer</h1>
+          <p>Prototipo iOS + watchOS per allenamenti indoor con rullo TACX FLUX e Apple Watch. Tema scuro, leggibile sotto sforzo; i numeri sono telemetria simulata in tempo reale con fisica della pendenza.</p>
+          <div className="meta">
+            <span className="chip"><span className="swatch" style={{ background: 'var(--accent)' }}></span>Accento ambra</span>
+            <span className="chip"><span className="swatch" style={{ background: 'var(--z2)' }}></span><span className="swatch" style={{ background: 'var(--z3)' }}></span><span className="swatch" style={{ background: 'var(--z4)' }}></span><span className="swatch" style={{ background: 'var(--z5)' }}></span><span className="swatch" style={{ background: 'var(--z6)' }}></span>Zone potenza/HR</span>
+            <span className="chip">Atleta: FTP 265 W · 72 kg</span>
+            <span className="chip">SIM: Passo dello Stelvio · ERG: 5×4′</span>
+          </div>
+        </div>
+
+        <section className="gs">
+          <h2>Flusso completo</h2>
+          <p className="sub">Prototipo navigabile e interattivo. Tocca le schede in basso per muoverti tra Home, Percorsi, Allenamento, Storico e Profilo; apri un percorso o un workout e premi <b>Pedala</b> / <b>Avvia</b> per entrare nella dashboard live, poi <b>termina</b> per il riepilogo.</p>
+          <div className="row">
+            <Frame title="App iOS" hint="navigabile, end-to-end">
+              <Phone><AppShell initial="home" rideVariant="B" /></Phone>
+            </Frame>
+            <Frame title="Connessione device" hint="rullo · Watch · spindown">
+              <Phone><AppShell initial="connect" rideVariant="B" /></Phone>
+            </Frame>
+          </div>
+        </section>
+
+        <section className="gs">
+          <h2>Live Dashboard · varianti di layout</h2>
+          <p className="sub">Stessa telemetria live, tre gerarchie a confronto. Il toggle <b>SIM / ERG</b> in alto cambia lo scenario (percorso reale vs intervalli strutturati) in tutte e tre. I comandi sono sincronizzati.</p>
+          <div className="row">
+            <Frame n="A" title="Focus" hint="un dato eroe">
+              <Phone><LiveDashboard variant="A" /></Phone>
+            </Frame>
+            <Frame n="B" title="Griglia bilanciata" hint="quattro metriche pari">
+              <Phone><LiveDashboard variant="B" /></Phone>
+            </Frame>
+            <Frame n="C" title="Terreno protagonista" hint="profilo/intervalli grande">
+              <Phone><LiveDashboard variant="C" /></Phone>
+            </Frame>
+          </div>
+        </section>
+
+        <section className="gs">
+          <h2>Apple Watch · companion</h2>
+          <p className="sub">App watchOS che avvia il workout HealthKit e fa da sorgente HR primaria, con comandi sincronizzati all'iPhone. (L'Apple Watch non trasmette l'HR come una fascia BLE: serve l'app companion.)</p>
+          <div className="row">
+            <Frame title="watchOS" hint="HR live · lap · pausa">
+              <div className="watch-wrap"><WatchFrame><WatchApp /></WatchFrame></div>
+            </Frame>
+          </div>
+        </section>
+      </div>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
