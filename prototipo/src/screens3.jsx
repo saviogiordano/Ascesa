@@ -144,20 +144,22 @@ function ZoneTable({ title, names, colors, ranges }) {
 
 function ProfileScreen() {
   const A = window.ATHLETE;
+  const nav = React.useContext(window.NavCtx);
   const ftpTrend = [243, 247, 246, 251, 255, 258, 261, 265];
   return (
     <window.Scaffold tab="profile">
       <window.TopBar large title="Profilo" />
       <div style={{ padding: '2px 16px 0', display: 'flex', flexDirection: 'column', gap: 18 }}>
-        <window.Card pad={16}>
+        <window.Card pad={16} onClick={() => nav.go('account')} style={{ cursor: 'pointer' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
             <div style={{ width: 56, height: 56, borderRadius: 28, background: 'var(--accent-ink)', display: 'flex', alignItems: 'center', justifyContent: 'center', flex: '0 0 auto' }}>
               <span style={{ fontSize: 22, fontWeight: 800, color: 'var(--accent)' }}>MV</span>
             </div>
-            <div style={{ flex: 1 }}>
+            <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontSize: 18, fontWeight: 780 }}>{A.name}</div>
-              <div style={{ fontSize: 13, color: 'var(--text-3)' }}>Cat. Master · Valtellina</div>
+              <div style={{ fontSize: 13, color: 'var(--text-3)' }}>Account e sicurezza</div>
             </div>
+            <window.Icon name="chev" size={18} color="var(--text-3)" />
           </div>
           <div className="tnum" style={{ display: 'flex', justifyContent: 'space-between', marginTop: 16, borderTop: '1px solid var(--line-soft)', paddingTop: 14 }}>
             <window.Stat3 v={A.ftp} u="W" l="FTP" />

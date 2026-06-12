@@ -27,6 +27,13 @@
   @keyframes scrIn   { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
   @keyframes scrBack { from { opacity: 0; transform: translateX(-14px); } to { opacity: 1; transform: none; } }
 </style>
+<template id="__bundler_thumbnail">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#1b1b1f"/>
+    <polygon points="18,74 42,40 56,56 72,28 86,74" fill="none" stroke="#e8a25a" stroke-width="4" stroke-linejoin="round"/>
+    <circle cx="56" cy="56" r="4" fill="#e8a25a"/>
+  </svg>
+</template>
 </head>
 <body>
 <div id="root"></div>
@@ -44,6 +51,10 @@
 <script type="text/babel" src="src/screens1.jsx"></script>
 <script type="text/babel" src="src/screens2.jsx"></script>
 <script type="text/babel" src="src/screens3.jsx"></script>
+<script type="text/babel" src="src/auth_ui.jsx"></script>
+<script type="text/babel" src="src/auth_flow.jsx"></script>
+<script type="text/babel" src="src/auth_flow2.jsx"></script>
+<script type="text/babel" src="src/account.jsx"></script>
 <script type="text/babel" src="src/AppShell.jsx"></script>
 <script type="text/babel" src="src/Watch.jsx"></script>
 
@@ -71,6 +82,13 @@
       {children}
     </div>
   );
+
+  function AuthDemo() {
+    const [authed, setAuthed] = React.useState(false);
+    return authed
+      ? <AppShell initial="home" rideVariant="B" />
+      : <AuthFlow initial="welcome" onAuthed={() => setAuthed(true)} />;
+  }
 
   function App() {
     return (
@@ -111,6 +129,34 @@
             </Frame>
             <Frame n="C" title="Terreno protagonista" hint="profilo/intervalli grande">
               <Phone><LiveDashboard variant="C" /></Phone>
+            </Frame>
+          </div>
+        </section>
+
+        <section className="gs">
+          <h2>Account, accesso &amp; privacy</h2>
+          <p className="sub">Multi-utente offline-first. Il flusso completo è navigabile nel primo telefono: <b>Welcome → registrazione</b> (email/password o Apple) <b>→ verifica → consensi → onboarding profilo</b>, fino alla Home. Gli altri frame mostrano i momenti chiave.</p>
+          <div className="row">
+            <Frame title="AuthFlow" hint="navigabile → entra nell'app">
+              <Phone><AuthDemo /></Phone>
+            </Frame>
+            <Frame title="Registrazione" hint="email · Apple · Google">
+              <Phone><AuthFlow initial="signup" /></Phone>
+            </Frame>
+            <Frame title="Consensi granulari" hint="GDPR · dati sanitari">
+              <Phone><AuthFlow initial="consent" /></Phone>
+            </Frame>
+            <Frame title="Onboarding profilo" hint="peso · FTP · FC max">
+              <Phone><AuthFlow initial="onboard" /></Phone>
+            </Frame>
+            <Frame title="Account e sicurezza" hint="sessioni · biometria · oblio">
+              <Phone><AppShell initial="account" rideVariant="B" /></Phone>
+            </Frame>
+            <Frame title="Sblocco Face ID" hint="gate biometrico">
+              <Phone><AuthFlow initial="lock" /></Phone>
+            </Frame>
+            <Frame title="Modalità ospite" hint="con migrazione dati">
+              <Phone><AuthFlow initial="guest" /></Phone>
             </Frame>
           </div>
         </section>

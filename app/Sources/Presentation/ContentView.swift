@@ -11,8 +11,12 @@ struct ContentView: View {
                 .tabItem { Label("Allena", systemImage: "bolt.fill") }
             Text("Storico")
                 .tabItem { Label("Storico", systemImage: "clock.fill") }
-            Text("Profilo")
-                .tabItem { Label("Profilo", systemImage: "person.fill") }
+            // DEBUG — sostituire con ProfileView
+            BLEDebugView()
+                .tabItem { Label("BLE Debug", systemImage: "antenna.radiowaves.left.and.right") }
+            // DEBUG — rimuovere prima del rilascio
+            RouteDebugView()
+                .tabItem { Label("Route Debug", systemImage: "map") }
         }
         .tint(.amber)
     }

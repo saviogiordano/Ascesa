@@ -56,6 +56,16 @@ Prerequisiti di fase indicati con `→ richiede: [task]`.
 
 ### 0.3 Protocolli e modelli di dominio (contratti, zero implementazione)
 
+Definisce le **interfacce e i tipi di dati** condivisi tra i layer — nessun algoritmo, nessuna dipendenza da framework. Ogni layer (Data, Domain, Presentation) può essere sviluppato e testato in isolamento perché conosce solo questi contratti.
+
+| Cosa | A cosa serve |
+|------|--------------|
+| `TrainerControl` | Protocollo per il rullo: `setTargetPower(_:)` (ERG) e `setSimulation(grade:totalWeight:)` (SIM). Implementato da `FTMSAdapter` e `TacxAdapter`. |
+| `HeartRateSource` | Protocollo per la sorgente HR: espone un `AsyncStream<HeartRateSample>`. Implementato dall'Apple Watch e dalla fascia BLE. |
+| `RouteProvider` | Protocollo per i percorsi: `search(query:)` e `fetch(id:)`. Implementato da GPX locale, OpenRouteService, Strava. |
+| Modelli dati | Struct pure che circolano tra i layer: `TrainerMetrics`, `HeartRateSample`, `Route`, `RouteProfile`, `WorkoutSession`, `SessionRecord`, `AthleteProfile`. |
+| Stati `WorkoutEngine` | Enum della macchina a stati: `idle → connecting → active → paused → finishing → finished`. |
+
 - [ ] 🔴 Definisci protocollo `TrainerControl`: `setTargetPower(_:)`, `setSimulation(grade:totalWeight:)` — S
 - [ ] 🔴 Definisci protocollo `HeartRateSource`: `AsyncStream<HeartRateSample>` — S
 - [ ] 🔴 Definisci protocollo `RouteProvider`: `search(query:)`, `fetch(id:)` — S

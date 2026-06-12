@@ -69,9 +69,9 @@ targets:
     dependencies:
       - package: GRDB
       - package: CoreGPX
-      # AscesaWatch viene costruito e testato con lo scheme separato.
-      # L'embedding nell'iOS app va configurato su device fisico (Phase MVP),
-      # non sul simulatore dove causa InvalidWatchKitApp (MIInstallerErrorDomain 92).
+      - target: AscesaWatch
+        embed: true
+        codeSign: true
 
   # ─── watchOS Companion App ────────────────────────────────────────────────────
   AscesaWatch:
@@ -93,7 +93,8 @@ targets:
         NSHealthUpdateUsageDescription: "Ascesa salva la sessione di allenamento in Salute."
         WKBackgroundModes:
           - workout-processing
-        WKWatchKitApp: true
+        WKApplication: true
+        WKCompanionAppBundleIdentifier: com.salvatoregiordano.ascesa
 
     entitlements:
       path: Resources/Watch/AscesaWatch.entitlements

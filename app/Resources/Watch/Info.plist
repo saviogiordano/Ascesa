@@ -28,7 +28,9 @@
 	<array>
 		<string>workout-processing</string>
 	</array>
-	<key>WKWatchKitApp</key>
+	<key>WKApplication</key>
 	<true/>
+	<key>WKCompanionAppBundleIdentifier</key>
+	<string>com.salvatoregiordano.ascesa</string>
 </dict>
 </plist>

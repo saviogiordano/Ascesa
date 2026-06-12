@@ -8,41 +8,29 @@ extension Color {
     static let amber            = Color(hex: 0xFFB84D)
 }
 
-// MARK: - Zone Colors (Presentation mapping of Domain.Zone)
+// MARK: - Spacing
 
-extension Color {
-    static let zone1 = Color(hex: 0x5B8BF5) // blu    — Z1 Recupero attivo
-    static let zone2 = Color(hex: 0x4CAF76) // verde  — Z2 Resistenza
-    static let zone3 = Color(hex: 0xFFD166) // giallo — Z3 Soglia aerobica
-    static let zone4 = Color(hex: 0xF4994A) // arancio — Z4 Soglia lattica
-    static let zone5 = Color(hex: 0xE24B4B) // rosso  — Z5 VO2max
+enum Spacing {
+    static let xs:  CGFloat =  4
+    static let sm:  CGFloat =  8
+    static let md:  CGFloat = 12
+    static let lg:  CGFloat = 16
+    static let xl:  CGFloat = 24
+    static let xxl: CGFloat = 32
 }
 
-extension Zone {
-    var color: Color {
-        switch self {
-        case .z1: .zone1
-        case .z2: .zone2
-        case .z3: .zone3
-        case .z4: .zone4
-        case .z5: .zone5
-        }
-    }
-}
+// MARK: - Typography
 
-// MARK: - Elevation Gradient Colors (profile chart)
-
-extension Color {
-    /// Returns the grade-zone color for a given slope percentage.
-    static func gradeColor(for grade: Double) -> Color {
-        switch abs(grade) {
-        case ..<2:   return Color(hex: 0x8DB48E)  // verde scuro — piano
-        case 2..<4:  return Color(hex: 0xFFD166)  // giallo
-        case 4..<7:  return Color(hex: 0xF4994A)  // arancio
-        case 7..<10: return Color(hex: 0xE24B4B)  // rosso
-        default:     return Color(hex: 0x9B1C1C)  // rosso scuro — > 10%
-        }
+enum Typography {
+    /// Hero metric (power, HR). Apply .monospacedDigit() on the Text view.
+    static func metricHero(size: CGFloat = 72) -> Font {
+        .system(size: size, weight: .bold, design: .rounded)
     }
+    static let metricUnit:  Font = .system(size: 18, weight: .semibold)
+    static let metricLabel: Font = .system(size: 11, weight: .semibold)
+    static let body:        Font = .body
+    static let secondary:   Font = .system(size: 12, weight: .medium)
+    static let caption:     Font = .system(size: 10, weight: .regular)
 }
 
 // MARK: - Color(hex:) initializer

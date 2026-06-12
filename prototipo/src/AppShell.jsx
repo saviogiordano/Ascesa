@@ -50,6 +50,8 @@ function AppShell({ initial = 'home', rideVariant = 'B' }) {
       case 'detail': return <window.SessionDetailScreen session={e.params} />;
       case 'profile': return <window.ProfileScreen />;
       case 'connect': return <window.ConnectionScreen />;
+      case 'account': return <window.AccountSettingsScreen />;
+      case 'auth': return <window.AuthFlow initial={e.params || 'welcome'} onAuthed={() => nav.go('home')} />;
       case 'ride': return <window.LiveDashboard variant={rideVariant} onSummary={() => nav.summary()} />;
       default: return <window.HomeScreen />;
     }
